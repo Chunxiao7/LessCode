@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import { useAttrs } from "vue";
 import { MenuItemProps } from "./type";
 defineProps<MenuItemProps>();
-const attrs = useAttrs();
 </script>
 <template>
-  <option v-bind="attrs" class="menu-item">
+  <div class="menu-item">
     <slot></slot>
-  </option>
+  </div>
 </template>
 <style lang="scss" scoped>
 .menu-item {

@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import { useAttrs } from "vue";
 import { SubMenuProps } from "./type";
 defineProps<SubMenuProps>();
-const attrs = useAttrs();
 </script>
 <template>
-  <optgroup class="sub-menu" v-bind="attrs">
-    <slot></slot>
-  </optgroup>
+  <div class="sub-menu">
+    <slot name="desc">{{ desc }}</slot>
+    <template v-if="children && children.length">
+      <SubMenu v-for="child in children" v-bind="child"> </SubMenu>
+    </template>
+    <MenuItem></MenuItem>
+  </div>
 </template>
 <style lang="scss" scoped></style>

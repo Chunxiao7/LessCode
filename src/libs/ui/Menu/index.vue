@@ -1,8 +1,18 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import SubMenu from "./SubMenu.vue";
+import { MenuProps } from "./type";
+defineProps<MenuProps>();
+</script>
 <template>
-  <select class="menu">
-    <h1><slot name="head"></slot></h1>
-    <slot></slot>
-  </select>
+  <div class="menu">
+    <template v-if="items.length">
+      <template v-for="item in items">
+        <SubMenu v-bind="item"></SubMenu>
+      </template>
+    </template>
+    <template v-else>
+      <slot></slot>
+    </template>
+  </div>
 </template>
 <style lang="scss" scoped></style>
