@@ -2,8 +2,8 @@
   "name": "@lesscode/common",
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/lesscode-ui.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/es/src/index.js",
+  "types": "./src/types.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

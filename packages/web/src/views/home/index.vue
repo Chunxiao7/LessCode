@@ -1,9 +1,5 @@
-<script lang="ts" setup>
-import SideBar from "@/components/SideBar/index.vue";
-</script>
+<script lang="ts" setup></script>
 <template>
-  <div>
-    <SideBar test="1"></SideBar>
-  </div>
+  <div></div>
 </template>
 <style lang="scss" scoped></style>
