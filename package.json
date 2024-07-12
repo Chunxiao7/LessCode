@@ -3,7 +3,7 @@
   "private": true,
   "npmClient": "pnpm",
   "scripts": {
-    "web:dev": "lerna exec --scope @lesscode/web npm run dev",
+    "web:dev": " lerna exec --scope @lesscode/common npm run build && lerna exec --scope @lesscode/web npm run dev",
     "common:dev": "lerna exec --scope @lesscode/common npm run dev"
   },
   "devDependencies": {

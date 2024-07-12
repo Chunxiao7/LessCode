@@ -2,7 +2,7 @@
   "name": "@lesscode/common",
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/es/src/index.js",
+  "main": "dist/es/index.js",
   "types": "./src/types.d.ts",
   "scripts": {
     "dev": "vite",
