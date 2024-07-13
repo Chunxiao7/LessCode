@@ -1,6 +1,5 @@
 {
   "name": "lesscode",
-  "private": true,
   "npmClient": "pnpm",
   "scripts": {
     "web:dev": "lerna exec --scope @lesscode/web npm run dev",
