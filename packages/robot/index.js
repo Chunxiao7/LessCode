@@ -196,17 +196,16 @@ function _writeFile(content) {
 }
 function formatData(data) {
   if (typeof data === 'string') return data
-  let s = ''
+  let  = ''
   data.forEach(item => {
     s += `${item.date}:\n创建人:  ${item.name}\n提交信息: ${item.message.replace(/github/g, '[G]')}\n`
   })
   console.log("format", s);
-  return s
+  return
 }
 function convertUTCToBeijingTime(utcTimeStr) {
   const utcDate = new Date(utcTimeStr);
-  const offsetInMinutes = 8 * 60;
-  const beijingDate = new Date(utcDate.getTime() + offsetInMinutes * 60 * 1000);
+  const beijingDate = new Date(utcDate.getTime());
   const year = beijingDate.getFullYear();
   const month = String(beijingDate.getMonth() + 1).padStart(2, '0');
   const day = String(beijingDate.getDate()).padStart(2, '0');
