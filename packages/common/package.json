@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "main": "dist/es/index.js",
-  "types": "./src/types.d.ts",
+  "types": "dist/es/src/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

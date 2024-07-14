@@ -1,10 +1,7 @@
 import { ModuleNamespace } from "vite/types/hot.js";
 import { App } from "vue";
 
-const modules: Record<string, ModuleNamespace> = import.meta.glob(
-  "./components/**/*.vue",
-  { eager: true }
-);
+const modules: Record<string, ModuleNamespace> = import.meta.glob("./components/**/*.vue", { eager: true });
 
 function install(Vue: App) {
   for (const path in modules) {
@@ -22,5 +19,7 @@ function install(Vue: App) {
 }
 
 export default {
-  install,
+  install
 };
+
+export { default as Button } from "./components/Button/index.vue";
