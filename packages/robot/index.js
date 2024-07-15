@@ -196,12 +196,12 @@ function _writeFile(content) {
 }
 function formatData(data) {
   if (typeof data === 'string') return data
-  let  = ''
+  let s = ''
   data.forEach(item => {
     s += `${item.date}:\n创建人:  ${item.name}\n提交信息: ${item.message.replace(/github/g, '[G]')}\n`
   })
   console.log("format", s);
-  return
+  return s;
 }
 function convertUTCToBeijingTime(utcTimeStr) {
   const utcDate = new Date(utcTimeStr);
