@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Menu from "./components/Menu/index.vue";
-import List from "./components/List/index.vue";
-const items = [
+import { SubMenuProps } from "./components/Menu/type";
+const items: SubMenuProps[] = [
   {
     key: "1",
     name: "1",
@@ -13,6 +13,16 @@ const items = [
       {
         key: "2-1",
         name: "2-1",
+        children: [
+          {
+            key: "3-1",
+            name: "3-1",
+          },
+        ],
+      },
+      {
+        key: "2-2",
+        name: "2-2",
       },
     ],
   },
@@ -25,7 +35,7 @@ const items = [
 
 <template>
   <div>
-    <Menu :items="items" :visiable="true" theme="dark"></Menu>
+    <Menu :items="items" :visiable="true"></Menu>
     <!-- <List :list="items">
       <template #listItem="{ item }">
         <div class="test">{{ item.title }}</div>

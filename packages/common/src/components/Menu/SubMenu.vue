@@ -25,13 +25,3 @@ const visiable = ref(props.visiable);
   </div>
   <MenuItem :name="name" v-else></MenuItem>
 </template>
-
-<style lang="scss" scoped>
-.l-submenu {
-  .submenu-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-</style>
