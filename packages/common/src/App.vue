@@ -4,22 +4,22 @@ import List from "./components/List/index.vue";
 const items = [
   {
     key: "1",
-    title: "1"
+    name: "1",
   },
   {
     key: "2",
-    title: "2",
+    name: "2",
     children: [
       {
         key: "2-1",
-        title: "2-1"
-      }
-    ]
+        name: "2-1",
+      },
+    ],
   },
   {
     key: "3",
-    title: "3"
-  }
+    name: "3",
+  },
 ];
 </script>
 

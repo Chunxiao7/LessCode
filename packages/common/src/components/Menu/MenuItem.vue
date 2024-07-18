@@ -3,9 +3,7 @@ import { MenuItemProps } from "./type";
 defineProps<MenuItemProps>();
 </script>
 <template>
-  <div class="le-menu-item">
-    <div class="title"><slot name="title"></slot></div>
-    <slot></slot>
-  </div>
+  <li class="l-menu-item">
+    <slot>{{ name }}</slot>
+  </li>
 </template>
-<style lang="scss" scoped></style>

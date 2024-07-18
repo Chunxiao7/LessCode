@@ -22,4 +22,4 @@ export default {
   install
 };
 
-export { default as Button } from "./components/Button/index.vue";
+

@@ -1,11 +1,12 @@
 export interface MenuItemProps {
+  name: string;
+}
+export interface SubMenuProps extends MenuItemProps {
   key: string;
-  title: string;
-  label?: string;
-  children?: MenuItemProps[];
+  visiable?: boolean;
+  children?: SubMenuProps[];
 }
 export interface MenuProps {
-  items: MenuItemProps[];
-  visiable?: boolean;
+  items: SubMenuProps[];
   theme?: string;
 }

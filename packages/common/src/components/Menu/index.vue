@@ -1,32 +1,21 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import SubMenu from "./SubMenu.vue";
 import { MenuProps } from "./type";
-import MenuItem from "./MenuItem.vue";
-const props = defineProps<MenuProps>();
-const visiables = ref(props.items.map(() => true));
+defineProps<MenuProps>();
 </script>
 <template>
-  <div v-for="(item, index) in items" class="le-menu" :key="item.key" v-show="visiable" :class="theme">
-    <template v-if="item.children && item.children.length">
-      {{ item.title }}
-      <button @click="visiables[index] = !visiables[index]">click</button>
-      <Menu :items="item.children" :visiable="visiables[index]"> </Menu>
-    </template>
-    <template v-else>
-      <MenuItem v-bind="item">
-        <template #title>
-          {{ item.title }}
-        </template>
-      </MenuItem>
-    </template>
+  <div class="l-menu" :key="item.key" :class="theme" v-for="item in items">
+    <SubMenu v-bind="item"></SubMenu>
   </div>
 </template>
 <style lang="scss" scoped>
 .dark {
-  background-color: black;
+  background-color: rgb(94, 73, 73);
+  color: #fff;
 }
-.le-menu {
+.l-menu {
   // background-color: chocolate;
+  padding: var(--padding-size);
   &:not(:last-child) {
     margin-bottom: 12px;
   }
