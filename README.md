@@ -21,7 +21,7 @@
 https://www.cnblogs.com/cangqinglang/p/14448329.html
 https://juejin.cn/post/7044807973868142622
 
-![alt text](image.png)
+![alt text](./assets/image.png)
 
 > 结合项目理解。首先，web项目导入vue时，会去node_modules查找对应vue库，而使用pnpm安装的vue库实际是一个软连接到根目录下的node_modules中的依赖
 
