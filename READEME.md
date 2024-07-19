@@ -16,4 +16,19 @@
 
 ## 1.pnpm
 
-文章推荐：https://www.cnblogs.com/cangqinglang/p/14448329.html
+文章推荐：
+
+https://www.cnblogs.com/cangqinglang/p/14448329.html
+https://juejin.cn/post/7044807973868142622
+
+![alt text](image.png)
+
+> 结合项目理解。首先，web项目导入vue时，会去node_modules查找对应vue库，而使用pnpm安装的vue库实际是一个软连接到根目录下的node_modules中的依赖
+
+![alt text](./assets/image2.png)
+
+> 此时如果vue还依赖其他库则去node_modules中查找，而此vue目录中根本就没有node_modules，所以他会向上查找node_modules文件，直到根目录的node_modules。这也就是为什么根目录的node_modules会有如此之多的依赖文件。这里其实和npm3+/yarn的扁平化依赖很像，只不过这里避免了幽灵依赖问题。
+
+关于幽灵依赖可以查看：https://jishuzhan.net/article/1809409650408296449
+
+> 我们来思考一下他是咋解决幽灵依赖的：假如我的vue依赖了a，a依赖b，如果我们想直接访问b，如果是npm3+/yarn依赖直接拍平到node_modules下，也就是说vue通过依赖查找规则是可以查到b的。而使用pnpm时，a的软连接到node_modules/.pnpm/a@xxx/node_modules/a，它的依赖b又是一个软连接，连接到node_modules/.pnpm/a@xxx/node_modules/b，vue按照查找规则只能查找到node_modules/.pnpm而无法访问里面的依赖。所以vue无法访问到b也就产生隔离。当然，这也解决了访问路径过长问题，通过软连接将依赖放到上层去，大大缩短了访问路径。
