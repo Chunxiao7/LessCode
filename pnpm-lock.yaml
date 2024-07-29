@@ -127,6 +127,9 @@ importers:
       '@types/node':
         specifier: ^20.14.10
         version: 20.14.10
+      '@vue/repl':
+        specifier: ^4.3.1
+        version: 4.3.1
       vue:
         specifier: ^3.4.29
         version: 3.4.31(typescript@5.5.3)
@@ -1335,6 +1338,9 @@ packages:
 
   '@vue/reactivity@3.4.31':
     resolution: {integrity: sha512-VGkTani8SOoVkZNds1PfJ/T1SlAIOf8E58PGAhIOUDYPC4GAmFA2u/E14TDAFcf3vVDKunc4QqCe/SHr8xC65Q==}
+
+  '@vue/repl@4.3.1':
+    resolution: {integrity: sha512-yzUuLhR+MqOGBDES+xbnm27SfPIEv7XKwhFWWpQhL7HUbXj77GVu+x50Q56JhCWWKTUJzk9MOvAn7bSgdvB5og==}
 
   '@vue/runtime-core@3.4.31':
     resolution: {integrity: sha512-LDkztxeUPazxG/p8c5JDDKPfkCDBkkiNLVNf7XZIUnJ+66GVGkP+TIh34+8LtPisZ+HMWl2zqhIw0xN5MwU1cw==}
@@ -6166,6 +6172,8 @@ snapshots:
   '@vue/reactivity@3.4.31':
     dependencies:
       '@vue/shared': 3.4.31
+
+  '@vue/repl@4.3.1': {}
 
   '@vue/runtime-core@3.4.31':
     dependencies:
