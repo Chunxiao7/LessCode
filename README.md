@@ -32,3 +32,11 @@ https://juejin.cn/post/7044807973868142622
 关于幽灵依赖可以查看：https://jishuzhan.net/article/1809409650408296449
 
 > 我们来思考一下他是咋解决幽灵依赖的：假如我的vue依赖了a，a依赖b，如果我们想直接访问b，如果是npm3+/yarn依赖直接拍平到node_modules下，也就是说vue通过依赖查找规则是可以查到b的。而使用pnpm时，a的软连接到node_modules/.pnpm/a@xxx/node_modules/a，它的依赖b又是一个软连接，连接到node_modules/.pnpm/a@xxx/node_modules/b，vue按照查找规则只能查找到node_modules/.pnpm而无法访问里面的依赖。所以vue无法访问到b也就产生隔离。当然，这也解决了访问路径过长问题，通过软连接将依赖放到上层去，大大缩短了访问路径。
+
+# 创建组件方案
+
+1.通过vscode连接到该平台实时更新
+优点：可利用vscode生态的各种插件
+缺点：操作麻烦，得手动启动自己vue项目并连接平台2.利用在线编辑器编辑查看组件
+优点：方便开发
+缺点：提示方面支持度不高
