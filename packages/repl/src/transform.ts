@@ -1,4 +1,4 @@
-  import type { File, Store } from './store'
+import type { File, Store } from './store'
 import type {
   BindingMetadata,
   CompilerOptions,
@@ -23,7 +23,12 @@ async function transformTS(src: string, isJSX?: boolean) {
     jsxRuntime: 'preserve',
   }).code
 }
-
+/**
+ * 编译文件
+ * @param store
+ * @param param1
+ * @returns
+ */
 export async function compileFile(
   store: Store,
   { filename, code, compiled }: File,
@@ -32,16 +37,20 @@ export async function compileFile(
     return []
   }
 
+  //文件是css文件
   if (filename.endsWith('.css')) {
     compiled.css = code
     return []
   }
 
+  //文件是jsx/tsx
   if (REGEX_JS.test(filename)) {
     const isJSX = testJsx(filename)
+    //如果是tsx转换成jsx
     if (testTs(filename)) {
       code = await transformTS(code, isJSX)
     }
+    //如果是jsx转成js
     if (isJSX) {
       code = await import('./jsx').then((m) => m.transformJSX(code))
     }
@@ -49,6 +58,7 @@ export async function compileFile(
     return []
   }
 
+  //文件是json
   if (filename.endsWith('.json')) {
     let parsed
     try {
@@ -61,11 +71,13 @@ export async function compileFile(
     return []
   }
 
+  //文件不是vue
   if (!filename.endsWith('.vue')) {
     return []
   }
-
+  //根据文件名生产hash
   const id = hashId(filename)
+  //将sfc编译成js代码
   const { errors, descriptor } = store.compiler.parse(code, {
     filename,
     sourceMap: true,
@@ -75,7 +87,9 @@ export async function compileFile(
     return errors
   }
 
+  //获取样式类型并过滤无效的类型
   const styleLangs = descriptor.styles.map((s) => s.lang).filter(Boolean)
+  //获取模版语言类型
   const templateLang = descriptor.template?.lang
   if (styleLangs.length && templateLang) {
     return [
@@ -97,14 +111,17 @@ export async function compileFile(
     ]
   }
 
+  //判断脚本类型
   const scriptLang = descriptor.script?.lang || descriptor.scriptSetup?.lang
   const isTS = testTs(scriptLang)
   const isJSX = testJsx(scriptLang)
 
+  //不支持js/ts以外语言
   if (scriptLang && scriptLang !== 'js' && !isTS && !isJSX) {
     return [`Unsupported lang "${scriptLang}" in <script> blocks.`]
   }
 
+  //判断样式是否携带scoped
   const hasScoped = descriptor.styles.some((s) => s.scoped)
   let clientCode = ''
   let ssrCode = ''
@@ -261,6 +278,16 @@ export async function compileFile(
   return []
 }
 
+/**
+ * 编译脚本,讲ts,tsx,jsx转js
+ * @param store
+ * @param descriptor
+ * @param id
+ * @param ssr
+ * @param isTS
+ * @param isJSX
+ * @returns
+ */
 async function doCompileScript(
   store: Store,
   descriptor: SFCDescriptor,
@@ -270,6 +297,7 @@ async function doCompileScript(
   isJSX: boolean,
 ): Promise<[code: string, bindings: BindingMetadata | undefined]> {
   if (descriptor.script || descriptor.scriptSetup) {
+    //表达式插件
     const expressionPlugins: CompilerOptions['expressionPlugins'] = []
     if (isTS) {
       expressionPlugins.push('typescript')
@@ -277,7 +305,7 @@ async function doCompileScript(
     if (isJSX) {
       expressionPlugins.push('jsx')
     }
-
+    //编译脚本
     const compiledScript = store.compiler.compileScript(descriptor, {
       inlineTemplate: true,
       ...store.sfcOptions?.script,
@@ -294,6 +322,7 @@ async function doCompileScript(
       },
     })
     let code = compiledScript.content
+    //ts转js
     if (isTS) {
       code = await transformTS(code, isJSX)
     }

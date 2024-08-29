@@ -58,12 +58,14 @@ export function useStore(
   }
   const loading = ref(false)
 
+  //设置内置importMap文件
   function applyBuiltinImportMap() {
     const importMap = mergeImportMap(builtinImportMap.value, getImportMap())
     setImportMap(importMap)
   }
 
   function init() {
+    //切换文件更新编译后的文件
     watchEffect(() => {
       compileFile(store, activeFile.value).then((errs) => (errors.value = errs))
     })
@@ -144,6 +146,7 @@ export function useStore(
 
   function setImportMap(map: ImportMap) {
     if (map.imports)
+      //修复url
       for (const [key, value] of Object.entries(map.imports)) {
         if (value) {
           map.imports![key] = fixURL(value)
@@ -222,6 +225,10 @@ export function useStore(
       compileFile(store, file).then((errs) => (errors.value = errs))
     }
   }
+  /** 获取界面的importMap配置
+   *
+   * @returns
+   */
   const getImportMap: Store['getImportMap'] = () => {
     try {
       return JSON.parse(files.value[importMapFile].code)
@@ -467,7 +474,9 @@ export type Store = Pick<
   | 'getTsConfig'
 >
 
+//文件类
 export class File {
+  //可编译对象
   compiled = {
     js: '',
     css: '',
@@ -476,11 +485,14 @@ export class File {
   editorViewState: editor.ICodeEditorViewState | null = null
 
   constructor(
-    public filename: string,
-    public code = '',
-    public hidden = false,
+    public filename: string, //文件名
+    public code = '', //文件内容
+    public hidden = false, //是否隐藏
   ) {}
 
+  /**
+   * 获取文件类型
+   */
   get language() {
     if (this.filename.endsWith('.vue')) {
       return 'vue'
@@ -498,6 +510,11 @@ export class File {
   }
 }
 
+/**
+ * 添加路径src前缀
+ * @param file
+ * @returns
+ */
 function addSrcPrefix(file: string) {
   return file === importMapFile ||
     file === tsconfigFile ||
@@ -505,7 +522,11 @@ function addSrcPrefix(file: string) {
     ? file
     : `src/${file}`
 }
-
+/**
+ * 去除路径src前缀
+ * @param file
+ * @returns
+ */
 export function stripSrcPrefix(file: string) {
   return file.replace(/^src\//, '')
 }
@@ -514,6 +535,12 @@ function fixURL(url: string) {
   return url.replace('https://sfc.vuejs', 'https://play.vuejs')
 }
 
+/**
+ * 创建文件
+ * @param files
+ * @param filename
+ * @param content
+ */
 function setFile(
   files: Record<string, File>,
   filename: string,
