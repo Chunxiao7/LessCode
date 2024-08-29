@@ -1,11 +1,25 @@
-//通过line-height与height相等水平垂直居中
+/**
+* 通过line-height与height相等水平垂直居中
+* $height 高度
+*/
 @mixin vh-center($height) {
   line-height: $height;
   height: $height;
   text-align: center;
 }
 
-/** 定义flex布局
+/**
+* 通过line-height与height设置垂直居中
+* $height 高度
+*/
+@mixin h-center($height) {
+  line-height: $height;
+  height: $height;
+}
+
+
+/** 
+* 定义flex布局
 * $direction 布局方向
 * $justify-content 主轴方向方向
 * $align-items 交叉轴方向

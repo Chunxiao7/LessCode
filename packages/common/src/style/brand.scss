@@ -2,12 +2,3 @@
   background-color: rgb(94, 73, 73);
   color: #fff;
 }
-.l-submenu {
-  .submenu-title {
-    @include flex(row, space-between, center);
-  }
-}
-.l-menu-item {
-  @include vh-center(40px);
-  background-color: #fafafa;
-}

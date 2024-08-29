@@ -17,11 +17,28 @@ const visiable = ref(props.visiable);
         @click="visiable = !visiable"
       ></i>
     </div>
-    <ul v-show="visiable">
+    <div class="submenu-next" v-show="visiable">
       <template v-if="children && children.length">
         <SubMenu v-for="child in children" v-bind="child" />
       </template>
-    </ul>
+    </div>
   </div>
   <MenuItem :name="name" v-else></MenuItem>
 </template>
+<style lang="scss" scoped>
+@import "../../style/common.scss";
+.l-submenu {
+  background-color: #fafafa;
+  .submenu-title {
+    padding-left: 12px;
+    @include h-center(40px);
+    @include flex(row, space-between, center);
+    &:hover {
+      background-color: #ebebeb;
+    }
+    &.is-active {
+      background-color: skyblue;
+    }
+  }
+}
+</style>
