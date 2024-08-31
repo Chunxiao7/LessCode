@@ -31,15 +31,15 @@ const style:StyleValue ={
 <style lang="scss" scoped>
 @import "../../style/common.scss";
 .l-submenu {
-  background-color: #fafafa;
+  background-color: var(--gray-lightest);
   .submenu-title {
     @include h-center(40px);
     @include flex(row, space-between, center);
     &:hover {
-      background-color: #ebebeb;
+      background-color: var(--gray-lighter);
     }
     &.is-active {
-      color: blue;
+      color: var(--blue-dark);
     }
   }
 }

@@ -35,7 +35,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .l-menu {
   & > div {
-    background-color: #fff;
+    background-color: var(--white-color);
   }
 }
 </style>

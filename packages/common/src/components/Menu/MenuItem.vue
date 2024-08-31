@@ -17,13 +17,13 @@ const style:StyleValue = {
 @import "../../style/common.scss";
 .l-menu-item {
   @include h-center(40px);
-  background-color: #fafafa;
+  background-color: var(--gray-lightest);
   &:hover {
-    background-color: #ebebeb;
+    background-color: var(--gray-lighter);
   }
   &.is-active {
-    background-color: skyblue;
-    color: blue;
+    background-color: var(--blue-lightest);
+    color: var(--blue-dark);
   }
 }
 </style>
