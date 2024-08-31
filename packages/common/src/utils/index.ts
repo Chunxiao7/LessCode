@@ -12,3 +12,4 @@ export function fuzzySearch(arr: string[], str: string) {
   }
   return false;
 }
+

@@ -1,5 +1,6 @@
 export interface MenuItemProps {
   name: string;
+  level?:number;
 }
 export interface SubMenuProps extends MenuItemProps {
   key: string;
