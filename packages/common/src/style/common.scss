@@ -24,9 +24,17 @@
 * $justify-content 主轴方向方向
 * $align-items 交叉轴方向
 */
-@mixin flex($direction, $justify-content, $align-items) {
+@mixin flex( $justify-content:center, $align-items:center,$direction:row) {
   display: flex;
-  flex-direction: $direction;
   justify-content: $justify-content;
   align-items: $align-items;
+  flex-direction: $direction;
+}
+
+@mixin show_line($line:2) {
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: $line;
+	overflow: hidden;
+	display: -webkit-box;
 }

@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import {ref} from "vue"
 import Menu from "./components/Menu/index.vue";
 import { SubMenuProps } from "./components/Menu/type";
+const collapsed = ref(false)
 const items: SubMenuProps[] = [
   {
     key: "1",
-    name: "1",
+    name: "控制",
+    icon:"icon-dashboard-fill"
   },
   {
     key: "2",
@@ -34,8 +37,9 @@ const items: SubMenuProps[] = [
 </script>
 
 <template>
-  <div>
-    <Menu :items="items" :visiable="true"></Menu>
+  <div class="home">
+    <button @click="()=>{collapsed = !collapsed}">click</button>
+    <Menu :items="items" :collapsed="collapsed"></Menu>
     <!-- <List :list="items">
       <template #listItem="{ item }">
         <div class="test">{{ item.title }}</div>
@@ -44,4 +48,5 @@ const items: SubMenuProps[] = [
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>

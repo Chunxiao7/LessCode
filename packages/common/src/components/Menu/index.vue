@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted,provide } from "vue";
 import SubMenu from "./SubMenu.vue";
 import { MenuProps } from "./type";
-defineProps<MenuProps>();
+const props = withDefaults(defineProps<MenuProps>(),{
+  collapsed:false
+})
+provide('isCollapsed',()=>props.collapsed)
 let childrenDom: HTMLElement[] = [];
 const classNames = ["l-menu-item", "submenu-title"];
 const menuDom = ref<HTMLElement>();
@@ -28,14 +31,19 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div ref="menuDom" class="l-menu" :class="theme" @click="handleClick">
+  <div ref="menuDom" class="l-menu" :class="{'is-collapsed':collapsed}" @click="handleClick">
     <SubMenu v-for="item in items" v-bind="item" :key="item.key"></SubMenu>
   </div>
 </template>
 <style lang="scss" scoped>
 .l-menu {
-  & > div {
-    background-color: var(--white-color);
+  position: relative;
+  width: 200px;
+  border-right: 1px solid var(--gray-lightest);
+  transition: all 150ms ease-out;
+  cursor: pointer;
+  &.is-collapsed{
+    width: 40px;
   }
 }
 </style>
